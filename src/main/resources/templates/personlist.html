@@ -17,6 +17,7 @@
                 <th>Email</th>
                 <th>Salary</th>
                 <th>DOB</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +27,9 @@
                 <td th:utext="${person.lastName}"></td>
                 <td th:utext="${person.email}"></td>
                 <td th:utext="${person.salary}"></td>
-                <td th:utext="${#dates.format(person.dob, 'dd/MMM/yyyy HH:mm')}"></td>
+                <td th:utext="${#dates.format(person.dob, 'yyyy/MMM/dd')}"></td>
+                <td><a class="btn btn-danger" th:href="@{/persons/delete/{person-id}{person-id=${person-id}}}">Delete</a>
+                    <a class="btn btn-success" th:href="@{/persons/edit/{person-id}{person-id=${person-id}}}">Edit</a></td>
             </tr>
         </tbody>
     </table>

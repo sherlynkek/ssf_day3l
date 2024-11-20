@@ -16,6 +16,9 @@ public class PersonService {
     public List<Person> findAll() {
         return personRepo.findAll();
     }
+    public Person findById(String personId) {
+        return personRepo.findById(personId);
+    }
 
     public Boolean create(Person person) {
         return personRepo.create(person);
@@ -28,4 +31,6 @@ public class PersonService {
     public Boolean update(Person person) {
         return personRepo.update(person);
     }
+
+    
 }

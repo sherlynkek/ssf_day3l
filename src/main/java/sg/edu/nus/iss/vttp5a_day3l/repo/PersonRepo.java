@@ -27,6 +27,11 @@ public class PersonRepo {
         return persons;
     }
 
+    public Person findById(String personId) {
+        Person foundPerson = persons.stream().filter(p -> p.getId().equals(personId)).findFirst().get();
+        return foundPerson;
+    }
+
     public Boolean create(Person person) {
         persons.add(person);
         return true;
