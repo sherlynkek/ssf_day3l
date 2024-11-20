@@ -9,9 +9,12 @@
 <body>
     <div class="container">
         <h1>
-            Fill in your particulars
+            Edit your particulars
         </h1>
-        <form method="POST" th:action="@{/persons/create}" th:object="${person}">
+        <form method="POST" th:action="@{/persons/edit}" th:object="${person}">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="id" th:field="*{id}" name="id" hidden>
+            </div>
             <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="First Name" name="firstName">
@@ -34,7 +37,7 @@
             <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
             <div class="mb-3">
                 <label for="dateOfBirth" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control" id="dateOfBirth" th:field="*{dob}" name="dateOfBirth">
+                <input type="date" class="form-control" id="dateOfBirth" th:field="*{dob}" placeholder="Date of Birth" name="dateOfBirth">
             </div>
             <div class="text-danger" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
             <div class="mb-3">
@@ -44,12 +47,13 @@
             <div class="text-danger" th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"></div>
             <div class="mb-3">
                 <label for="postalCode" class="form-label">Postal Code</label>
-                <input type="text" class="form-control" id="postalCode" th:field="*{postalCode}" name="postalCode" placeholder="Postal Code" th:value="${postalCode != null ? postalCode : ''}">
+                <input type="text" class="form-control" id="postalCode" th:field="*{postalCode}" placeholder="Postal Code" name="postalCode">
             </div>
             <div class="text-danger" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 </body>
 </html>

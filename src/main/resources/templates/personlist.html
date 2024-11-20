@@ -7,32 +7,45 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <a class="btn btn-primary", th:href="@{/persons/create}">Create</a>
-    <table class="table table-info">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Salary</th>
-                <th>DOB</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="person: ${persons}">
-                <td th:utext="${person.id}"></td>
-                <td th:utext="${person.firstName}"></td>
-                <td th:utext="${person.lastName}"></td>
-                <td th:utext="${person.email}"></td>
-                <td th:utext="${person.salary}"></td>
-                <td th:utext="${#dates.format(person.dob, 'yyyy/MMM/dd')}"></td>
-                <td><a class="btn btn-danger" th:href="@{/persons/delete/{person-id}{person-id=${person-id}}}">Delete</a>
-                    <a class="btn btn-success" th:href="@{/persons/edit/{person-id}{person-id=${person-id}}}">Edit</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <table class="table table-info">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Date of Birth</th>
+                    <th scope="col">Telephone</th>
+                    <th scope="col">Postal Code</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="person :${persons}">
+                    <td th:text="${person.id}"></td>
+                    <td th:text="${person.firstName}"></td>
+                    <td th:text="${person.lastName}"></td>
+                    <td th:text="${person.salary}"></td>
+                    <td th:text="${person.email}"></td>
+                    <td th:text="${#dates.format(person.dob, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${person.telephone}"></td>
+                    <td th:text="${person.postalCode}"></td>
+                    <td>
+                        <a th:href="@{/persons/delete/{person-id}(person-id=${person.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/persons/edit/{person-id}(person-id=${person.id})}" class="btn btn-success">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-primary" th:href="@{/persons/create}">Create</a>
+        <form th:action="@{/persons/savelist}" method="get">
+            <button class="btn btn-secondary">Save</button>
+        </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
