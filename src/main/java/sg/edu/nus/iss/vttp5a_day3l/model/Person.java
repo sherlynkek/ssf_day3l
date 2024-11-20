@@ -31,7 +31,7 @@ public class Person {
     private String firstName;
 
     @NotEmpty(message = "Last name is mandatory")
-    @Size(min = 5, max = 60, message = "Last name miust be between 5 to 60 characters")
+    @Size(min = 2, max = 60, message = "Last name miust be between 2 to 60 characters")
     private String lastName;
 
     @Min(value = 1500, message = "Minimum salary starts from 1500")

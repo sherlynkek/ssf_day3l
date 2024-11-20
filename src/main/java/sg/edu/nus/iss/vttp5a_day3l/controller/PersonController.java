@@ -27,20 +27,20 @@ public class PersonController {
     public String personListing(Model model){
         List<Person> persons = personService.findAll();
         model.addAttribute("persons",persons);
-        return "personList";
+        return "personlist";
     }
 
     @GetMapping("/create")
     public String createForm(Model model){
         model.addAttribute("person", new Person());
-        return "personcreateform";
+        return "personcreate";
     }
 
     @PostMapping("/create")
     public String postPerson(@Valid Person person, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             System.out.println(bindingResult.getAllErrors());
-            return "personcreateform";
+            return "personcreate";
         }
         Person p = new Person(person.getFirstName(), person.getLastName(), person.getSalary(), person.getEmail(), person.getDob(), person.getTelephone(), person.getPostalCode());
         personService.create(p);
@@ -58,13 +58,13 @@ public class PersonController {
     public String editPerson(@PathVariable("person-id") String personId, Model model){
         Person p = personService.findById(personId);
         model.addAttribute("person", p);
-        return "personeditform";
+        return "personupdate";
     }
 
     @PostMapping("/edit")
     public String postUpdateForm(@Valid Person person, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-            return "personeditform";
+            return "personupdate";
         } 
         personService.update(person);
         return "redirect:/persons";
