@@ -6,7 +6,7 @@ LABEL MAINTAINER="sherlyn"
 LABEL description="This is VTTP5 SSF Day 13 lecture demo and walkthrough"
 LABEL name="vttp5a-day3l"
 
-ARG APP_DIR=/APP_DIR
+ARG APP_DIR=/APP
 
 # directory where your source code will reside
 # directory where you copy your project to (in the next step)
@@ -18,6 +18,7 @@ COPY mvnw .
 COPY mvnw.cmd .
 COPY src src
 COPY .mvn .mvn
+COPY data /APP/data
 
 # package the application using the RUN directive
 # this will download the dependencies defined in pom.xml

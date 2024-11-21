@@ -18,7 +18,7 @@ Check docker image create in local docker repo
 
 
 Run the image inside the container
-5. docker container -d -t -p <exposed public port>:<application server port> <image name>
+5. docker container run -d -t -p <exposed public port>:<application server port> <image name>
 <br> 
 
 
