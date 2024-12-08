@@ -13,23 +13,29 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/session")
 public class SessionController {
-
+    
     @GetMapping("/firstpage")
     public String firstPage(){
         return "pageA";
     }
 
     @PostMapping("/firstpage")
-    public String postFromFirstPage(@RequestBody MultiValueMap<String, String> entity, 
+    public String postFromFirstPage(@RequestBody MultiValueMap<String, String> entity,
     HttpSession session, Model model){
-        String fullName = entity.getFirst("fullName");
-        session.setAttribute("myname", fullName);
-        model.addAttribute("myFullName", fullName);
+        String fName = entity.getFirst("fullname");
+
+        session.setAttribute("myname", fName);
+        model.addAttribute("myFullName", fName);
+
         return "pageB";
     }
 
     @GetMapping("/thirdpage")
-    public String thirdPage(HttpSession session, Model model){
+    public String thirdpage(HttpSession session, Model model){
+        if(session.getAttribute("myname") == null){
+            return "redirect:/session/firstpage";
+        }
+
         model.addAttribute("myFullName", session.getAttribute("myname"));
         return "pageC";
     }
@@ -37,6 +43,7 @@ public class SessionController {
     @GetMapping("/reset")
     public String reset(HttpSession session, Model model){
         session.invalidate();
+
         return "redirect:/session/firstpage";
     }
 }
